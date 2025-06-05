@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: FW_TPTask
- * Owner: Sahar Moalem
- * Reviewer: 
- * Review status: 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_FW_TPTASK_HPP
-#define  ILRD_RD1645_FW_TPTASK_HPP
+#ifndef  __FW_TPTASK_HPP__
+#define  __FW_TPTASK_HPP__
 
 #include <memory>
 

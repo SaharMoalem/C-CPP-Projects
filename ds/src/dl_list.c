@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: dl_list
- * Owner: Sahar Moalem                                                             
- * Reviewer: The 1ST 
- * Review status: Approved
- ******************************************************************************/ 
- 
 #include <stdlib.h>                  /* malloc, free */
 #include <assert.h>                  /* assert */
 
@@ -32,12 +25,11 @@ static dll_iter_t NodeToIter(dll_node_t* node)
     return node;
 }
 
-
 dl_list_t* DLListCreate(void)
 {
     dl_list_t* p_dlist = (dl_list_t*)malloc(sizeof(dl_list_t));
     
-    if (NULL == p_dlist)
+    if(NULL == p_dlist)
     {
         return NULL;
     }
@@ -60,6 +52,7 @@ void DLListDestroy(dl_list_t* dl_list)
     {
         DLListPopFront(dl_list);
     }
+
     free(dl_list);
 }
 
@@ -70,6 +63,8 @@ dll_iter_t DLListInsertBefore(dl_list_t* dl_list, dll_iter_t iter,
     dll_node_t* iter_node = IterToNode(iter);
     
     assert(dl_list);
+    assert(element);
+
     if (NULL == new_node)
     {
         return DLListEnd(dl_list);
@@ -109,6 +104,7 @@ dll_iter_t DLListRemoveElement(dll_iter_t iter)
 void* DLListPopFront(dl_list_t* dl_list)
 {
     void* data;
+
     assert(dl_list);
     assert(!DLListIsEmpty(dl_list));
     
@@ -142,7 +138,8 @@ size_t DLListSize(const dl_list_t* dl_list)
 {
     size_t count = 0;
     
-    assert(dl_list);    
+    assert(dl_list);
+
     DLListForEach(DLListBegin(dl_list), DLListEnd(dl_list), CountAction,
                                                                         &count);
     
@@ -192,6 +189,8 @@ void* DLListGetValue(dll_iter_t iter)
 
 void DLListSetValue(dll_iter_t iter, const void* value)
 {
+    assert(value);
+
     iter->data = (void*)value;
 }
 
@@ -203,10 +202,11 @@ dll_iter_t DLListFind(dll_iter_t from, dll_iter_t to,
     while(!DLListIsSameIter(from, to))
     {
         if(is_match(IterToNode(from)->data, param))
-	{
-	    break;
-	}
-	from = from->next;
+        {
+            break;
+        }
+
+	    from = from->next;
     }
 	
     return from;
@@ -216,15 +216,19 @@ int DLListForEach(dll_iter_t from, dll_iter_t to,
                     int (*action_func)(void* data, void* param), void* param)
 {
     int action_result;
+
     assert(action_func);
+
     while(!DLListIsSameIter(from, to))
     {
         action_result = action_func(IterToNode(from)->data, param);
+
         if(0 != action_result)
-	{
-	    return action_result;
-	}
-	from = from->next;
+        {
+            return action_result;
+        }
+
+	    from = from->next;
     }
 	
     return 0;
@@ -235,6 +239,7 @@ int DLListMultiFind(dll_iter_t from, dll_iter_t to,
                                     ,const void* param, dl_list_t* out_dl_list)
 {
     dll_iter_t check_push_back;
+
     assert(out_dl_list);
     assert(is_match);
     
@@ -243,11 +248,13 @@ int DLListMultiFind(dll_iter_t from, dll_iter_t to,
         if(is_match(IterToNode(from)->data, param))
 	    {
 	        check_push_back = DLListPushBack(out_dl_list, from->data);
+
 	        if (DLListIsSameIter(check_push_back, DLListEnd(out_dl_list)))
 	        {
 	            return -1;
 	        }
 	    }
+        
 	    from = from->next;
     }
 	

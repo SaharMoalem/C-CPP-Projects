@@ -167,6 +167,7 @@ void PrintBoard(size_t board[NUM_OF_ROW][NUM_OF_COL])
         {
             printf("%lu\t", board[i][j]);
         }
+        
         printf("\n");
     }
 }

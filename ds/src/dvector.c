@@ -1,11 +1,4 @@
-/******************************************************************************
- * File Name: dvector
- * Owner: Sahar Moalem                                                             
- * Reviewer: Israel
- * Review status: Approved
- ******************************************************************************/ 
- 
- #include <stdlib.h>                  /* malloc, realloc, free */
+#include <stdlib.h>                  /* malloc, realloc, free */
 #include <assert.h>                  /* assert */
 #include <string.h>                  /* memcpy */
 
@@ -27,10 +20,12 @@ dvector_t* DvectorCreate(size_t capacity, size_t element_size)
 {
     dvector_t* p_dvector = (dvector_t*)malloc(sizeof(dvector_t));
     p_dvector->array = malloc(capacity * element_size);
+
     if (NULL == p_dvector || NULL == p_dvector->array)
     {
         return NULL;
     }
+
     p_dvector->size = 0;
     p_dvector->capacity = capacity;
     p_dvector->element_size = element_size;
@@ -64,7 +59,9 @@ void DvectorSetElement(dvector_t* dvector, size_t index, const void* value)
     
     assert(NULL != dvector);
     assert(index < dvector->size);
-    memcpy(p_array + (index * dvector->element_size), value, dvector-> element_size);
+
+    memcpy(p_array + (index * dvector->element_size), value,
+                                                        dvector-> element_size);
 }
 
 void DvectorGetElement(const dvector_t* dvector, size_t index, void* dest)
@@ -73,7 +70,9 @@ void DvectorGetElement(const dvector_t* dvector, size_t index, void* dest)
     
     assert(NULL != dvector);
     assert(index < dvector -> size);
-    memcpy(dest, p_array + (index * dvector->element_size), dvector-> element_size);
+
+    memcpy(dest, p_array + (index * dvector->element_size),
+                                                        dvector-> element_size);
 }
 
 int DvectorPushBack(dvector_t* dvector, const void* element)
@@ -81,6 +80,7 @@ int DvectorPushBack(dvector_t* dvector, const void* element)
     unsigned char* p_array;
     
     assert(NULL != dvector);
+
     if (dvector->size == dvector->capacity)
     {
         if (FAILURE == DvectorResize(dvector, INC_FACTOR(dvector->capacity)))
@@ -88,8 +88,10 @@ int DvectorPushBack(dvector_t* dvector, const void* element)
             return FAILURE;
         }
     }
+
     p_array = (unsigned char*)(dvector->array);
-    memcpy(p_array + (dvector->size * dvector->element_size), element, dvector-> element_size);
+    memcpy(p_array + (dvector->size * dvector->element_size), element,
+                                                        dvector-> element_size);
     dvector->size++;
     
     return SUCCESS;
@@ -98,11 +100,14 @@ int DvectorPushBack(dvector_t* dvector, const void* element)
 int DvectorPopBack(dvector_t* dvector)
 {
     assert(NULL != dvector);
+
     if (!dvector->size)
     {
         return FAILURE;
     }
+
     dvector->size--;
+
     if (dvector->size <= DEC_FACTOR(dvector->capacity))
     {
         DvectorShrink(dvector);
@@ -114,11 +119,14 @@ int DvectorPopBack(dvector_t* dvector)
 int DvectorResize(dvector_t* dvector, size_t new_capacity)
 {    
     assert(NULL != dvector);
+
     dvector->array = realloc(dvector->array, new_capacity * dvector->element_size + 1);
+
     if (NULL == dvector->array)
     {
         return FAILURE;
     }
+    
     dvector->capacity = new_capacity;
     dvector->size = dvector->size > dvector->capacity ? dvector->capacity : dvector->size;
     

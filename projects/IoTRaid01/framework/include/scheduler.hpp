@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Scheduler
- * Owner: Sahar Moalem
- * Reviewer: Amit
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_SCHEDULER_HPP
-#define  ILRD_RD1645_SCHEDULER_HPP
+#ifndef  __SCHEDULER_HPP__
+#define  __SCHEDULER_HPP__
 
 #include <queue>
 #include <chrono>

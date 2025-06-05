@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: BST
- * Owner: Sahar Moalem                                                             
- * Reviewer: Amit
- * Review status: Approved
- ******************************************************************************/ 
-
 #include <stdlib.h>     /* malloc, free */
 #include <assert.h>     /* assert */
 
@@ -91,12 +84,14 @@ static bst_iter_t RemoveLeaf(bst_node_t* node)
     {
         next->left = NULL;
     }
+
     else
     {
         next->right = NULL;
     }
 
     free(node);
+
     return NodeToIter(next);
 }
 
@@ -110,12 +105,14 @@ static bst_iter_t RemoveChild(bst_node_t* node, bst_node_t* next)
     {
         parent->left = next;
     }
+
     else
     {
         parent->right = next;
     }
 
     free(node);
+
     return NodeToIter(next);
 }
 
@@ -173,6 +170,7 @@ bst_t* BSTCreate(compare_func_t compare_func)
     assert(compare_func);
 
     bst = (bst_t*)malloc(sizeof(bst_t));
+
     if(bst == NULL)
     {
         return NULL;
@@ -333,17 +331,21 @@ bst_iter_t BSTFind(const bst_t* bst, const void* data)
     assert(bst);
 
     iter = bst->dummy.left;
+
     while(iter != NULL)
     {
         compare_result = bst->compare_func(data, iter->data);
+
         if(compare_result > 0)
         {
             iter = iter->right;
         }
+
         else if(compare_result < 0)
         {
             iter = iter->left;
         }
+
         else
         {
             return NodeToIter(iter);
@@ -363,6 +365,7 @@ int BSTForEach(bst_iter_t from, bst_iter_t to, action_func_t action_func,
     while(!BSTIsSameIter(from, to))
     {
         action_result = action_func(IterToNode(from)->data, param);
+        
         if(action_result != 0)
         {
             return action_result;

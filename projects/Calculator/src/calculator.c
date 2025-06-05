@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: Calculator
- * Owner: Sahar Moalem                                                             
- * Reviewer: Lior
- * Review status: Approved
- ******************************************************************************/
-
 #include <string.h>  /* strlen */
 #include <assert.h>  /* assert */
 #include <ctype.h>   /* isspace */

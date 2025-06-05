@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: p_queue
- * Owner: Sahar Moalem                                                             
- * Reviewer: Amit
- * Review status: Approved
- ******************************************************************************/ 
- 
 #include <stdlib.h>                  /* malloc, free */
 #include <assert.h>                  /* assert */
 
@@ -21,13 +14,16 @@ pq_t* PQCreate(int (*compare_func)(const void*, const void*))
     pq_t* pq = NULL;
     
     assert(compare_func);
+
     pq = (pq_t*)malloc(sizeof(pq_t));
+
     if (pq == NULL)
     {
         return NULL;
     }
     
     pq->list = CreateSortedList(compare_func);
+    
     if (pq->list == NULL)
     {
         free(pq);

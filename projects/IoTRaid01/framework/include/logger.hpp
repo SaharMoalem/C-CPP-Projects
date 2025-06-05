@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Logger
- * Owner: Sahar Moalem
- * Reviewer: Shani
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_LOGGER_HPP
-#define  ILRD_RD1645_LOGGER_HPP
+#ifndef  __LOGGER_HPP__
+#define  __LOGGER_HPP__
 
 #include <string>
 #include <fstream>

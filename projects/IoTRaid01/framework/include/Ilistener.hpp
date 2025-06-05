@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Listener
- * Owner: Sahar Moalem
- * Reviewer: Alon
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_LISTENER_HPP
-#define  ILRD_RD1645_LISTENER_HPP
+#ifndef  __ILISTENER_HPP__
+#define  __ILISTENER_HPP__
 
 #include <vector>
 

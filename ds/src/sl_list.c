@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: sl_list
- * Owner: Sahar Moalem                                                             
- * Reviewer: Arthur Morgan
- * Review status: Approved
- ******************************************************************************/ 
- 
 #include <stdlib.h>                  /* malloc, free */
 #include <assert.h>                  /* assert */
 
@@ -36,6 +29,7 @@ static iterator_t FindEnd(iterator_t iter)
     {
         iter = iter->next;
     }
+
     return iter;
 }
 
@@ -43,30 +37,37 @@ sl_list_t* SLListCreate(void)
 {
     sl_list_t* p_list = (sl_list_t*)malloc(sizeof(sl_list_t));
     sll_node_t* dummy;
+
     if (NULL == p_list)
     {
         return NULL;
     }
+
     dummy = (sll_node_t*)malloc(sizeof(sll_node_t));
+
     if (NULL == dummy)
     {
         free(p_list);
         return NULL;
     }
+
     dummy->data = p_list;
     dummy->next = NULL;
     p_list->head = dummy;
     p_list->tail = dummy;
+
     return p_list;
 }
 
 void SLListDestroy(sl_list_t* sl_list)
 {    
     assert(NULL != sl_list);
+
     while (!SLListIsEmpty(sl_list))
     {
         SLListRemoveElement(SLListBegin(sl_list));
     }
+
     free(sl_list->tail);
     free(sl_list);
 }
@@ -78,7 +79,7 @@ iterator_t SLListInsertBefore(iterator_t iter, const void* element)
     void* tmp_data = iter_node->data;
     iterator_t tmp_next = iter_node->next;
     
-    if (NULL == new_node)
+    if(NULL == new_node)
     {
         return FindEnd(iter);
     }
@@ -102,12 +103,14 @@ iterator_t SLListRemoveElement(iterator_t iter)
     
     iter_curr->data = iter_next->data;
     iter_curr->next = iter_next->next;
+
     if (NULL == iter_curr->next)
     {
         ((sl_list_t*)iter_curr->data)->tail = iter_curr;
     }
     
     free(iter_next);
+
     return NodeToIter(iter_curr);
 }
 
@@ -117,7 +120,8 @@ size_t SLListCount(const sl_list_t* sl_list)
     size_t count = 0;
     
     assert(NULL != sl_list);
-    while (sl_list->tail != curr)
+
+    while(sl_list->tail != curr)
     {
         ++count;
         curr = curr->next;
@@ -173,13 +177,15 @@ void SLListSetValue(iterator_t iter, const void* value)
 iterator_t SLListFind(iterator_t from, iterator_t to, int (*is_match)(const void* data, const void* element) ,const void* element)
 {
     assert(NULL != is_match);
+
     while(!SLListIsSameIter(from, to))
     {
         if(is_match(IterToNode(from)->data, element))
-	{
-	    return from;
-	}
-	from = from->next;
+        {
+            return from;
+        }
+
+        from = from->next;
     }
 	
     return FindEnd(from);
@@ -188,13 +194,15 @@ iterator_t SLListFind(iterator_t from, iterator_t to, int (*is_match)(const void
 iterator_t SLListForEach(iterator_t from, iterator_t to, int (*action_func)(void* data, void* param), void* param)
 {
     assert(NULL != action_func);
+    
     while(!SLListIsSameIter(from, to))
     {
         if(0 != action_func(IterToNode(from)->data, param))
-	{
-	    return from;
-	}
-	from = from->next;
+        {
+            return from;
+        }
+
+        from = from->next;
     }
 	
     return to;

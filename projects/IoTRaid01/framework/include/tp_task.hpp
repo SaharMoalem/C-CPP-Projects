@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Thread Pool
- * Owner: Sahar Moalem
- * Reviewer: Shani
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_TP_TASK_HPP
-#define  ILRD_RD1645_TP_TASK_HPP
+#ifndef  __TP_TASK_HPP__
+#define  __TP_TASK_HPP__
 
 #include <functional>   // function
 #include <semaphore>    // binary, counting semaphore

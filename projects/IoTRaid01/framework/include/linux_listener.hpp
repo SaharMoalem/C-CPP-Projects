@@ -1,5 +1,5 @@
-#ifndef  ILRD_RD1645_LINUX_LISTENER_HPP
-#define  ILRD_RD1645_LINUX_LISTENER_HPP
+#ifndef  __LINUX_LISTENER_HPP__
+#define  __LINUX_LISTENER_HPP__
 
 #include "Ilistener.hpp"
 

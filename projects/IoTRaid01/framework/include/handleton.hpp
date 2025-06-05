@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Handleton
- * Owner: Sahar Moalem
- * Reviewer: Ofir 1ST
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_HANDLETON_HPP
-#define  ILRD_RD1645_HANDLETON_HPP
+#ifndef  __HANDLETON_HPP__
+#define  __HANDLETON_HPP__
 
 #include <memory>           // shared_ptr
 #include <unordered_map>    // unordered_map

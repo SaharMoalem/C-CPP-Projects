@@ -3,7 +3,6 @@
 
 #include <stddef.h>     /* size_t */
 
-
 typedef size_t (*hash_func_t)(const void* data);
 typedef int (*action_func_t)(void* data, void* param);
 typedef int (*is_match_t)(const void* data, const void* param);
@@ -110,8 +109,6 @@ void* HTFind(const hash_table_t* hash_table, const void* data);
 */
 int HTForeach(const hash_table_t* hash_table, action_func_t action_func, 
                 void* param);
-
-/* ADVANCED */
 
 /*  
 *   @desc:          Returns @hash_table load factor

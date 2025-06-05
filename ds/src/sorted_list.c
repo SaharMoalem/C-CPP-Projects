@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: sorted_list
- * Owner: Sahar Moalem                                                             
- * Reviewer: Bar
- * Review status: Approved
- ******************************************************************************/ 
- 
 #include <stdlib.h>                  /* malloc, free */
 #include <assert.h>                  /* assert */
 
@@ -24,8 +17,10 @@ static dll_iter_t FindInsertLocation(sorted_list_t* sorted_list, dll_iter_t runn
 		{
 			break;
 		}
+
 		runner = DLListNext(runner);
 	}
+
 	return runner;	
 }
 
@@ -35,17 +30,22 @@ sorted_list_t* CreateSortedList(int (*CompareFunc)(const void* ,const void*))
     sorted_list_t* sorted_list;
     
     assert(CompareFunc);
+
     sorted_list = (sorted_list_t*)malloc(sizeof(sorted_list_t));
+
     if (NULL == sorted_list)
     {
         return NULL;
     }
+
     sorted_list->list = DLListCreate();
+
     if(NULL == sorted_list->list)
     {
         free(sorted_list);
         return NULL;
     }
+    
     sorted_list->CompareFunc = CompareFunc;
     
     return sorted_list;
@@ -62,42 +62,50 @@ void SortedListDestroy(sorted_list_t* sorted_list)
 sorted_list_iter_t SortedListInsert(sorted_list_t* sorted_list, void* data)
 {
     sorted_list_iter_t iter;
+
 	assert(NULL != sorted_list);
+
 	iter = SortedListBegin(sorted_list);
 	iter.internal_iter = FindInsertLocation(sorted_list, 
 										DLListBegin(sorted_list->list), data);
 	iter.internal_iter = DLListInsertBefore(sorted_list->list, 
 										iter.internal_iter, (const void*)data);
+
 	return iter;
 }
 
 sorted_list_iter_t SortedListRemove(sorted_list_iter_t where)
 {
     where.internal_iter = DLListRemoveElement(where.internal_iter);
+
     return where;
 }
 
 void* SortedListPopFront(sorted_list_t* sorted_list)
 {
     assert(sorted_list);
+
     return DLListPopFront(sorted_list->list);
 }
 
 void* SortedListPopBack(sorted_list_t* sorted_list)
 {
     assert(sorted_list);
+
     return DLListPopBack(sorted_list->list);
 }
 
 size_t SortedListSize(const sorted_list_t* sorted_list)
 {
     assert(sorted_list);
+
     return DLListSize(sorted_list->list);
 }
 
 int SortedListIsEmpty(const sorted_list_t* sorted_list)
 {
     assert(sorted_list);
+
     return DLListIsEmpty(sorted_list->list);
 }
 
@@ -106,35 +114,42 @@ sorted_list_iter_t SortedListBegin(sorted_list_t* sorted_list)
     sorted_list_iter_t begin_iter;
     
     assert(sorted_list);
+
     begin_iter.internal_iter = DLListBegin(sorted_list->list);
+
     #ifndef NDEBUG
         begin_iter.list = sorted_list;
     #endif
+
     return begin_iter;
 }
 
 sorted_list_iter_t SortedListEnd(sorted_list_t* sorted_list)
 {
     sorted_list_iter_t end_iter;
+
     end_iter.internal_iter = DLListEnd(sorted_list->list);
+
     #ifndef NDEBUG
         end_iter.list = sorted_list;
     #endif
+
     return end_iter;
 }
 
 sorted_list_iter_t SortedListNext(sorted_list_iter_t iter)
 {
     iter.internal_iter = DLListNext(iter.internal_iter);
+
     return iter;
 }
 
 sorted_list_iter_t SortedListPrev(sorted_list_iter_t iter)
 {
     iter.internal_iter = DLListPrev(iter.internal_iter);
+
     return iter;
 }
-
 
 int SortedListIsSameIter(sorted_list_iter_t one, sorted_list_iter_t other)
 {
@@ -169,6 +184,7 @@ sorted_list_iter_t SortedListFindIf(sorted_list_iter_t from, sorted_list_iter_t 
     assert(from.list == to.list);
     
     from.internal_iter = DLListFind(from.internal_iter, to.internal_iter, is_match, param);
+
     return from;
 }
 
@@ -186,6 +202,7 @@ static sorted_list_iter_t FindWhereToMerge(sorted_list_t* list, sorted_list_iter
     {
         iter = SortedListNext(iter);
     }
+
     return iter;
 }
 
@@ -202,17 +219,23 @@ void SortedListMerge(sorted_list_t* list_dst, sorted_list_t* list_src)
 		
     while (!SortedListIsEmpty(list_src))
     {
-	src_start = SortedListBegin(list_src);
-	src_end = src_start;
-	dst_iter = FindWhereToMerge(list_dst, dst_iter, SortedListGetValue(src_start));
+	    src_start = SortedListBegin(list_src);
+	    src_end = src_start;
+	    dst_iter = FindWhereToMerge(list_dst, dst_iter,
+                                                SortedListGetValue(src_start));
+
     	if (SortedListIsSameIter(dst_iter, SortedListEnd(list_dst)))
       	{
       	    src_end = SortedListEnd(list_src);
-	}
-	else
-	{
-	    src_end = FindWhereToMerge(list_src, src_end, SortedListGetValue(dst_iter));
-	}
-	DLListSplice(src_start.internal_iter, src_end.internal_iter, SortedListPrev(dst_iter).internal_iter);
+	    }
+
+	    else
+	    {
+	        src_end = FindWhereToMerge(list_src, src_end,
+                                                SortedListGetValue(dst_iter));
+	    }
+
+	    DLListSplice(src_start.internal_iter, src_end.internal_iter,
+                                        SortedListPrev(dst_iter).internal_iter);
     }
 }

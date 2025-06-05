@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Factory
- * Owner: Sahar Moalem
- * Reviewer: Mr. Zack
- * Review status: Approved 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_FACTORY_HPP
-#define  ILRD_RD1645_FACTORY_HPP
+#ifndef  __FACTORY_HPP__
+#define  __FACTORY_HPP__
 
 #include <functional>       // function
 #include <unordered_map>    // unordered_map

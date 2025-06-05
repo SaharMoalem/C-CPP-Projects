@@ -3,7 +3,6 @@
 
 #include <stddef.h> /*size_t*/
 
-
 typedef struct dvector dvector_t;
 
 /* 

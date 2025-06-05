@@ -1,10 +1,5 @@
-/******************************************************************************
- * File Name: VSA
- * Owner: Sahar Moalem                                                             
- * Reviewer: Itai
- * Review status: Approved
- ******************************************************************************/ 
 #include <assert.h>
+
 #include "vsa.h"
 
 #define WORD_SIZE (sizeof(size_t))

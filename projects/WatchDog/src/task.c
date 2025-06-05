@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: task
- * Owner: Sahar Moalem                                                             
- * Reviewer: 
- * Review status: 
- ******************************************************************************/ 
-
 #include <assert.h>     /* assert */
 #include <time.h> 	/* time_t */
 #include <stdlib.h>	/* malloc, free */

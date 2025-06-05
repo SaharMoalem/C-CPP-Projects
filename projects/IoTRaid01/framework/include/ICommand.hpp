@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: ICommand
- * Owner: Sahar Moalem
- * Reviewer: 
- * Review status: 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_ICommand_HPP
-#define  ILRD_RD1645_ICommand_HPP
+#ifndef  __ICOMMAND_HPP__
+#define  __ICOMMAND_HPP__
 
 #include <optional>             // optional
 #include <memory>

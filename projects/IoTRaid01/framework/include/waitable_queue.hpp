@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: WaitableQueue
- * Owner: Sahar Moalem
- * Reviewer: Mor
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_WAITABLEQ_HPP
-#define  ILRD_RD1645_WAITABLEQ_HPP
+#ifndef  __WAITABLEQ_HPP__
+#define  __WAITABLEQ_HPP__
 
 #include <queue>                // queue, priority_queue
 #include <mutex>                // mutex

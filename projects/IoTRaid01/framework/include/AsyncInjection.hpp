@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: AsyncInjection
- * Owner: Sahar Moalem
- * Reviewer: Zack
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_ASYNCINJECTION_HPP
-#define  ILRD_RD1645_ASYNCINJECTION_HPP
+#ifndef  __ASYNCINJECTION_HPP__
+#define  __ASYNCINJECTION_HPP__
 
 #include <functional>
 #include <chrono>

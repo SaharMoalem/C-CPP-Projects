@@ -133,9 +133,6 @@ int AVLForEach(const avl_t* avl, action_func_t action_func, void* param,
 int AVLIsEmpty(const avl_t* avl);
 
 
-/* ADVANCED */
-
-
 /* 
 *   @desc:          Finds all instances matching @match_func with @param and
 *                   puts them in @out_list         

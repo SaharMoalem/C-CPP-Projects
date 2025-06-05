@@ -1,10 +1,3 @@
-/*******************************************************************************
- * File Name: Trie
- * Owner: Sahar Moalem                                                             
- * Reviewer: Amit
- * Review status: Approved
- ******************************************************************************/ 
-
 #include <assert.h>      /*assert*/
 #include <stdlib.h>      /*malloc, free*/
 
@@ -141,6 +134,7 @@ static trie_status_t RecuAlloc(trie_node_t* node, bit_array_t* input,
     }
 
     child = BitArrayGetValue(*input, height - 1);
+    
     if(!AllocChild(node, child))
     {
         return TRIE_ALLOC_FAIL;

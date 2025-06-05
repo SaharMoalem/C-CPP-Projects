@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: DirMonitor
- * Owner: Sahar Moalem
- * Reviewer: Shani
- * Review status: 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_DIRMONITOR_HPP
-#define  ILRD_RD1645_DIRMONITOR_HPP
+#ifndef  __DIRMONITOR_HPP__
+#define  __DIRMONITOR_HPP__
 
 #include <string>
 #include <thread>

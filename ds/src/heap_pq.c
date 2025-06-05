@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: p_queue
- * Owner: Sahar Moalem                                                             
- * Reviewer: Amit
- * Review status: Approved
- ******************************************************************************/ 
- 
 #include <stdlib.h>                  /* malloc, free */
 #include <assert.h>                  /* assert */
 
@@ -21,13 +14,16 @@ heap_pq_t* PQCreate(int (*compare_func)(const void*, const void*))
     heap_pq_t* pq = NULL;
     
     assert(compare_func);
+
     pq = (heap_pq_t*)malloc(sizeof(heap_pq_t));
+
     if (pq == NULL)
     {
         return NULL;
     }
     
     pq->heap = HeapCreate(compare_func);
+
     if (pq->heap == NULL)
     {
         free(pq);
@@ -91,13 +87,14 @@ void PQClear(heap_pq_t* pq)
 {
     assert(pq);
     
-    while (!PQIsEmpty(pq))
+    while(!PQIsEmpty(pq))
     {
         PQDequeue(pq);
     }
 }
 
-void* PQErase(heap_pq_t* pq, int (*is_match)(const void*, const void*), const void* param)
+void* PQErase(heap_pq_t* pq, int (*is_match)(const void*, const void*),
+                                                            const void* param)
 {
     assert(pq);
     assert(is_match);

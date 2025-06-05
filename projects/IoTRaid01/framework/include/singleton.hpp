@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Singleton
- * Owner: Sahar Moalem
- * Reviewer: 
- * Review status: 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_SINGLETON_HPP
-#define  ILRD_RD1645_SINGLETON_HPP
+#ifndef  __SINGLETON_HPP__
+#define  __SINGLETON_HPP__
 
 #include <mutex>        // mutex
 #include <atomic>

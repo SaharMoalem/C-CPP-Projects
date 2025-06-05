@@ -1,10 +1,3 @@
-/*******************************************************************************
- * File Name: AVL
- * Owner: Sahar Moalem                                                             
- * Reviewer: Lior
- * Review status: Approved
- ******************************************************************************/ 
-
 #include <assert.h>      /*assert*/
 #include <stdlib.h>      /*malloc, free*/
 
@@ -31,6 +24,7 @@ avl_t* AVLCreate(compare_func_t compare_func)
     assert(compare_func);
 
     avl = (avl_t*)malloc(sizeof(avl_t));
+
     if(!avl)
     {
         return NULL;
@@ -112,6 +106,7 @@ static avl_node_t* CheckBalance(avl_node_t* root)
     if(balance_factor > 1)
     {
         child_balance_factor = GetBalanceFactor(root->right);
+
         if(child_balance_factor < 0)
         {
             root->right = RotateRight(root->right);
@@ -138,17 +133,21 @@ static avl_node_t* PlaceNode(avl_node_t* root, compare_func_t compare_func,
                                                         avl_node_t* new_node)
 {
     int compare_result = 0;
+
     if(!root)
     {
         return new_node;
     }
 
     compare_result = compare_func(root->data, new_node->data);
+
     assert(compare_result);
+
     if(compare_result > 0)
     {
         root->left = PlaceNode(root->left, compare_func, new_node);
     }
+
     else
     {
         root->right = PlaceNode(root->right, compare_func, new_node);
@@ -165,6 +164,7 @@ int AVLInsert(avl_t* avl, const void* data)
     assert(avl);
 
     node = (avl_node_t*)malloc(sizeof(avl_node_t));
+
     if(!node)
     {
         return -1;
@@ -193,6 +193,7 @@ static avl_node_t* RemoveNextInOrder(avl_node_t* node_to_cpy, avl_node_t* node)
     node_cpy = node->right;
     node_to_cpy->data = node->data;
     free(node);
+
     return node_cpy;
 }
 
@@ -217,12 +218,14 @@ static avl_node_t* FindNodeToRemove(avl_node_t* root,
                                 compare_func_t compare_func, const void* param)
 {
     int compare_result = 0;
+
     if(!root)
     {
         return NULL;
     }
 
     compare_result = compare_func(root->data, param);
+
     if(compare_result == 0)
     {
         root = RemoveNode(root);
@@ -240,6 +243,7 @@ static avl_node_t* FindNodeToRemove(avl_node_t* root,
     }
 
     UpdateHeight(root);
+
     return CheckBalance(root);
 }
 
@@ -292,6 +296,7 @@ static void* FindNode(avl_node_t* node, compare_func_t compare_func,
     }
 
     compare = compare_func(node->data, param);
+
     if(compare == 0)
     {
         return node->data;
@@ -316,18 +321,21 @@ static int PreOrderForEach(avl_node_t* node, action_func_t action_func,
                                                                     void* param)
 {
     int action_result = 0;
+
     if(!node)
     {
         return 0;
     }
 
     action_result = action_func(node->data, param);
+
     if(action_result != 0)
     {
         return action_result;
     }
 
     action_result = PreOrderForEach(node->left, action_func, param);
+
     if(action_result != 0)
     {
         return action_result;
@@ -340,18 +348,21 @@ static int InOrderForEach(avl_node_t* node, action_func_t action_func,
                                                                     void* param)
 {
     int action_result = 0;
+
     if(!node)
     {
         return 0;
     }
 
     action_result = InOrderForEach(node->left, action_func, param);
+
     if(action_result != 0)
     {
         return action_result;
     }
 
     action_result = action_func(node->data, param);
+
     if(action_result != 0)
     {
         return action_result;
@@ -364,18 +375,21 @@ static int PostOrderForEach(avl_node_t* node, action_func_t action_func,
                                                                     void* param)
 {
     int action_result = 0;
+
     if(!node)
     {
         return 0;
     }
 
     action_result = PostOrderForEach(node->left, action_func, param);
+
     if(action_result != 0)
     {
         return action_result;
     }
 
     action_result = PostOrderForEach(node->right, action_func, param);
+
     if(action_result != 0)
     {
         return action_result;
@@ -418,9 +432,11 @@ static size_t TraverseAndPushToList(avl_t* avl, avl_node_t* node,
     left_matches = TraverseAndPushToList(avl, node->left, match_func, param,
                                                         out_list, to_remove);  
     is_match = match_func(node->data, param);
+
     if(is_match)
     {
         iter = DLListPushBack(out_list, node->data);
+        
         if(to_remove && !DLListIsSameIter(iter, DLListEnd(out_list)))
         {
             AVLRemove(avl, node->data);

@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: IInputProxy
- * Owner: Sahar Moalem
- * Reviewer: 
- * Review status: 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_IInputProxy_HPP
-#define  ILRD_RD1645_IInputProxy_HPP
+#ifndef  __IINPUTPROXY_HPP__
+#define  __IINPUTPROXY_HPP__
 
 #include <memory>
 

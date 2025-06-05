@@ -1,14 +1,7 @@
-/******************************************************************************
- * File Name: Watchdog
- * Owner: Sahar Moalem                                                             
- * Reviewer: Aviv
- * Review status: Approved
- ******************************************************************************/
 #define _POSIX_C_SOURCE 200112L
 
 #include <unistd.h>     /* fork, execvp */
 #include <stdlib.h>     /* malloc, free */
-#include <sys/types.h>  /*consider remove it*/
 #include <pthread.h>    /* pthread_t, pthread_create, pthread_join */
 #include <signal.h>     /* SIGUSR2, kill */
 #include <semaphore.h>  /* sem_t, sem_open, sem_wait, sem_close, sem_unlink */
@@ -33,6 +26,7 @@ pthread_t thread;
 static void* ThreadStart(void* args)
 {
     char** arguments = (char**)args;
+
     if(-1 == RunWD(g_threshold, g_interval, g_argc, arguments, CLIENT))
     {
         fprintf(stderr, "Thread creation failed\n");
@@ -130,6 +124,7 @@ wd_status_t StartWD(size_t threshold, size_t interval, int argc, char** argv)
     }
     
     sprintf(pid_buffer, "%d" ,pid);
+    
     if(-1 == setenv(ENV_VAR_NAME, pid_buffer, 1))
     {
         CleanResources(sem, exec_args);
@@ -137,6 +132,7 @@ wd_status_t StartWD(size_t threshold, size_t interval, int argc, char** argv)
     }
 
     sem_wait(sem);
+
     if(0 != pthread_create(&thread, NULL, ThreadStart, argv))
     {
         kill(pid, SIGUSR2);

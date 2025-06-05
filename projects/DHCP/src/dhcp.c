@@ -1,10 +1,3 @@
-/*******************************************************************************
- * File Name: DHCP
- * Owner: Sahar Moalem                                                             
- * Reviewer: Amit
- * Review status: Approved
- ******************************************************************************/ 
-
 #include <assert.h>      /*assert*/
 #include <stdlib.h>      /*malloc, free*/
 #include <stdint.h>      /* uint32_t */

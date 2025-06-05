@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Dispatcher
- * Owner: Sahar Moalem
- * Reviewer: Gil
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_DISPATCHER_HPP
-#define  ILRD_RD1645_DISPATCHER_HPP
+#ifndef  __DISPATCHER_HPP__
+#define  __DISPATCHER_HPP__
 
 #include <list>             // list
 #include <functional>       // function

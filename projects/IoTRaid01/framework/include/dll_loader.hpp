@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: DLLLoader
- * Owner: Sahar Moalem
- * Reviewer: Shani
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_DLL_LOADER_HPP
-#define  ILRD_RD1645_DLL_LOADER_HPP
+#ifndef  __DLL_LOADER_HPP__
+#define  __DLL_LOADER_HPP__
 
 #include <string>           // string
 #include <unordered_map>    // unordered_map

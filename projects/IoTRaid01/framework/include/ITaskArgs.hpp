@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: ITaskArgs
- * Owner: Sahar Moalem
- * Reviewer: 
- * Review status: 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_ITASKARGS_HPP
-#define  ILRD_RD1645_ITASKARGS_HPP
+#ifndef  __ITASKARGS_HPP__
+#define  __ITASKARGS_HPP__
 
 namespace ilrd
 {

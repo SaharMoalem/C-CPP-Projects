@@ -1,9 +1,3 @@
-/*******************************************************************************
- * File Name: Heap
- * Owner: Sahar Moalem                                                             
- * Reviewer: Aviv
- * Review status: Approved
- ******************************************************************************/
 #include <stdlib.h>     /*malloc, free*/
 #include <assert.h>     /* assert */
 
@@ -28,12 +22,14 @@ heap_t* HeapCreate(compare_func_t compare)
     assert(compare);
 
     heap = (heap_t*)malloc(sizeof(heap_t));
+
     if(!heap)
     {
         return NULL;
     }
 
     heap->vector = DvectorCreate(CAPACITY, ELEM_SIZE);
+
     if(!heap->vector)
     {
         free(heap);
@@ -170,6 +166,7 @@ static void* FindElementToRemove(heap_t* heap, void* param,
     }
 
     DvectorGetElement(heap->vector, index, &index_data);
+
     if(is_match(index_data, param))
     {
         Swap(heap->vector, index, DvectorSize(heap->vector) - 1);
@@ -179,6 +176,7 @@ static void* FindElementToRemove(heap_t* heap, void* param,
     }
 
     index_data = FindElementToRemove(heap, param, is_match, GET_LEFT(index));
+
     if(index_data)
     {
         return index_data;

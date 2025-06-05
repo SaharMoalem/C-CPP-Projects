@@ -1,10 +1,3 @@
-/******************************************************************************
- * File Name: scheduler
- * Owner: Sahar Moalem                                                             
- * Reviewer: Offir
- * Review status: Approved
- ******************************************************************************/
- 
 #include <assert.h>     /* assert */
 #include <stdlib.h>	/* malloc, free */
 

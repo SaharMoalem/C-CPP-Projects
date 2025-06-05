@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Reactor
- * Owner: Sahar Moalem
- * Reviewer: Alon
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_REACTOR_HPP
-#define  ILRD_RD1645_REACTOR_HPP
+#ifndef  __REACTOR_HPP__
+#define  __REACTOR_HPP__
 
 #include <functional>
 #include <memory>

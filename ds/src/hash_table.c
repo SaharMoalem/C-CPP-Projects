@@ -1,10 +1,3 @@
-/*******************************************************************************
- * File Name: Hash Table
- * Owner: Sahar Moalem                                                             
- * Reviewer: Aviv
- * Review status: Approved
- ******************************************************************************/ 
-
 #include <assert.h>      /*assert*/
 #include <stdlib.h>      /*malloc, free*/
 
@@ -47,12 +40,14 @@ hash_table_t* HTCreate(size_t n_buckets, hash_func_t hash_func,
     assert(n_buckets);
 
     hash_table = (hash_table_t*)malloc(sizeof(hash_table_t));
+
     if(!hash_table)
     {
         return NULL;
     }
 
     hash_table->buckets = (dl_list_t**)malloc(sizeof(dl_list_t*) * n_buckets);
+
     if(!hash_table->buckets)
     {
         free(hash_table);
@@ -62,6 +57,7 @@ hash_table_t* HTCreate(size_t n_buckets, hash_func_t hash_func,
     for( ; i < n_buckets; ++i)
     {
         hash_table->buckets[i] = DLListCreate();
+
         if(!hash_table->buckets[i])
         {
             DestroyTable(hash_table, i);
@@ -93,6 +89,7 @@ int HTInsert(hash_table_t* hash_table, const void* data)
     list = hash_table->buckets[GetHashIndex(hash_table, data)];
     iter = DLListFind(DLListBegin(list), DLListEnd(list),
                                                 hash_table->match_func, data);
+
     if(!DLListIsSameIter(iter, DLListEnd(list)))
     {
         DLListRemoveElement(iter);
@@ -111,6 +108,7 @@ void HTRemove(hash_table_t* hash_table, const void* data)
     list = hash_table->buckets[GetHashIndex(hash_table, data)];
     iter = DLListFind(DLListBegin(list), DLListEnd(list),
                                                 hash_table->match_func, data);
+                                                
     if(!DLListIsSameIter(iter, DLListEnd(list)))
     {
         DLListRemoveElement(iter);

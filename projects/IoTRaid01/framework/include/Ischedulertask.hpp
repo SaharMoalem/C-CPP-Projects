@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: ISchedulerTask
- * Owner: Sahar Moalem
- * Reviewer: 
- * Review status: 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_ISCHEDULERTASK_HPP
-#define  ILRD_RD1645_ISCHEDULERTASK_HPP
+#ifndef  __ISCHEDULERTASK_HPP__
+#define  __ISCHEDULERTASK_HPP__
 
 namespace ilrd
 {

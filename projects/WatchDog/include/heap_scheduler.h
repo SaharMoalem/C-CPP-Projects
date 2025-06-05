@@ -7,15 +7,6 @@
 
 typedef struct scheduler scheduler_t;
 
-/* only for reference
-struct scheduler
-{
-    pq_t* queue;
-    int is_running;
-    status_t status;
-};
- */
- 
 typedef enum sched_status
 {
     SCHED_SUCCESS   = 0,

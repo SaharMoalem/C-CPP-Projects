@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Thread Pool
- * Owner: Sahar Moalem
- * Reviewer: Shani
- * Review status: Approved
- ******************************************************************************/
-#ifndef  ILRD_RD1645_THREAD_POOL_HPP
-#define  ILRD_RD1645_THREAD_POOL_HPP
+#ifndef  __THREAD_POOL_HPP__
+#define  __THREAD_POOL_HPP__
 
 #include <map>      // map
 #include <thread>   // jthread

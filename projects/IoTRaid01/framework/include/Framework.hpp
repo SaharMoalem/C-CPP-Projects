@@ -1,11 +1,5 @@
-/*******************************************************************************
- * File Name: Framework
- * Owner: Sahar Moalem
- * Reviewer: 
- * Review status: 
- ******************************************************************************/
-#ifndef  ILRD_RD1645_FRAMEWORK_HPP
-#define  ILRD_RD1645_FRAMEWORK_HPP
+#ifndef  __FRAMEWORK_HPP__
+#define  __FRAMEWORK_HPP__
 
 #include "reactor.hpp"
 #include "dir_monitor.hpp"

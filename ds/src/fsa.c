@@ -1,9 +1,3 @@
-/******************************************************************************
- * File Name: fsa
- * Owner: Sahar Moalem                                                             
- * Reviewer: Offir
- * Review status: Approved
- ******************************************************************************/ 
 #include <assert.h>
 #include "fsa.h"
 
@@ -40,6 +34,7 @@ fsa_t* FSAInit(void* memory, size_t block_size, size_t memory_size)
     assert(memory);
 
     block_size = AlignBlock(block_size);
+
     if (block_size + sizeof(fsa_t) + sizeof(header_t) > memory_size)
     {
         return NULL;
@@ -49,6 +44,7 @@ fsa_t* FSAInit(void* memory, size_t block_size, size_t memory_size)
     fsa->next_free = sizeof(fsa_t);
     header = (header_t*)((char*)memory + fsa->next_free);
     header->next = sizeof(fsa_t) + sizeof(header_t) + block_size;
+
     while(header->next <= memory_size - block_size - sizeof(header_t))
     {
         header_next = (header_t*)((char*)memory + header->next);
@@ -66,6 +62,7 @@ void* FSAAlloc(fsa_t* fsa)
     header_t* header = NULL;
     
     assert(fsa);
+
     if(fsa->next_free == 0)
     {
         return NULL;
@@ -83,6 +80,7 @@ void FSAFree(fsa_t* fsa, void* p_block)
 
     assert(fsa);
     assert(p_block);
+
     header = (header_t*)p_block - 1;
     header->next = fsa->next_free;
     fsa->next_free = (size_t)header - (size_t)fsa;
@@ -95,7 +93,9 @@ size_t FSACountFree(const fsa_t* fsa)
     size_t offset = 0;
 
     assert(fsa);
+
     offset = fsa->next_free;
+    
     while(offset != 0)
     {
         header = (header_t*)((char*)fsa + offset);
